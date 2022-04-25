@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { LessonsService } from "./lessons.service";
 
 //decorator
 @Component({
@@ -10,7 +11,7 @@ import { Component } from "@angular/core";
     //buyerada View title o'zgaruvchisiga binding qilinmoqda
 
     // back tick yani bek tik ( => ` <= ) bunday belgi nima uchun qo'yiladi desak
-    // bunday holda biz bir nechta qator satrlarni yozishimiz mumkin huddi pythondagi """  """ shunga o'xshedi ekan :)
+    // bunday holda biz bir nechta qator satrlarni yozishimiz mumkin huddi pythondagi ( => """  """ <= )shunga o'xshedi ekan :)
     template: `
     <h1>{{getTitle()}}</h1>
 
@@ -28,5 +29,9 @@ export class LessonsComponent {
         return  "Sarlavha: " + this.title;
     }
 
-    lessonsArray = ["Angular asoslari", "Web Api", "Entity Framework", "MS SQL Server"];
+    lessonsArray;
+
+    constructor(lessonsSvs: LessonsService) {
+        this.lessonsArray = lessonsSvs.getLessons()
+    }
 }
