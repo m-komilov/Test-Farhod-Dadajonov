@@ -17,7 +17,7 @@ import { LessonsService } from "./lessons.service";
 
     <input type="text" [(ngModel)]="userName"> <br>
     <label>{{userName}} </label> <br>
-    <button (click)="onTestButtonClicked()"> Reset </button>
+    <button class="btn btn-primary" (click)="onTestButtonClicked()"> Reset </button>
     <ul>
         <li *ngFor="let lesson of lessonsArray">
             {{lesson}}
