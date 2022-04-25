@@ -15,6 +15,9 @@ import { LessonsService } from "./lessons.service";
     template: `
     <h1>{{getTitle()}}</h1>
 
+    <input type="text" (input)="onTextInput($event)"> <br>
+    <label>{{userName}} </label> <br>
+    <button (click)="onTestButtonClicked()"> Test </button>
     <ul>
         <li *ngFor="let lesson of lessonsArray">
             {{lesson}}
@@ -28,6 +31,7 @@ export class LessonsComponent {
     title: string = "Darslar ro'yhati";
     lessonsArray: string[];
     logoUrl: string = "https://blog.ndepend.com/wp-content/uploads/global-coding-standards-2-960x460.jpg";
+    userName: string = "";
 
     getTitle(): string {
         return  "Sarlavha: " + this.title;
@@ -35,5 +39,14 @@ export class LessonsComponent {
 
     constructor(lessonsSvs: LessonsService) {
         this.lessonsArray = lessonsSvs.getLessons()
+    }
+
+    onTestButtonClicked() {
+        console.log("Tugma bosilib tashayabdiii :) ")
+    }
+
+    onTextInput(event: any) {
+        this.userName = event.target.value;
+        console.log(event)
     }
 }
