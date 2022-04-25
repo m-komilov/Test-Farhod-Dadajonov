@@ -17,7 +17,12 @@ import { LessonsService } from "./lessons.service";
 
     <input type="text" [(ngModel)]="userName"> <br>
     <label>{{userName}} </label> <br>
-    <button class="btn btn-primary" (click)="onTestButtonClicked()"> Reset </button>
+    <!-- [class.btn]="isBtnApplicable" [class.btn-primary]="isBtnPrimaryApplicable"  bu class binding pastda o'zgaruvchi ochilgan boolean tipida manashunga qarab 
+          tugmamizi classlari almashadi :)  -->
+    <button [class.btn]="isBtnApplicable" [class.btn-primary]="isBtnPrimaryApplicable" (click)="onTestButtonClicked()"> Reset </button>
+
+    <!-- [style.backgroundColor]="isActive ? 'green' : 'white'"  <=== Style binding -->
+    <button [style.backgroundColor]="isActive ? 'green' : 'white'" (click)="onTestButtonClicked()"> Test stryle binding</button>
     <ul>
         <li *ngFor="let lesson of lessonsArray">
             {{lesson}}
@@ -28,6 +33,11 @@ import { LessonsService } from "./lessons.service";
     `
 })
 export class LessonsComponent {
+    isBtnApplicable: boolean = true;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    isBtnPrimaryApplicable: boolean = true;
+
+    isActive: boolean = false;
+
     title: string = "Darslar ro'yhati";
     lessonsArray: string[];
     logoUrl: string = "https://blog.ndepend.com/wp-content/uploads/global-coding-standards-2-960x460.jpg";
