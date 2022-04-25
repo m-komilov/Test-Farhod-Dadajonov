@@ -20,16 +20,18 @@ import { LessonsService } from "./lessons.service";
             {{lesson}}
         </li>
     </ul>
+    <img src="{{ logoUrl }}"/> <!-- string interpolation --> <!-- string interpolation ni tagidayam property binding yotibdi ekan brat addushishi Farhodaka -->
+    <img [src]="logoUrl">   <!-- property binding  bu bir tomonlama binding deyiladi ekan  -->
     `
 })
 export class LessonsComponent {
     title: string = "Darslar ro'yhati";
+    lessonsArray: string[];
+    logoUrl: string = "https://blog.ndepend.com/wp-content/uploads/global-coding-standards-2-960x460.jpg";
 
     getTitle(): string {
         return  "Sarlavha: " + this.title;
     }
-
-    lessonsArray;
 
     constructor(lessonsSvs: LessonsService) {
         this.lessonsArray = lessonsSvs.getLessons()
