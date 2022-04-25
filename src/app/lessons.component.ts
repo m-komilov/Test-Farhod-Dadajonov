@@ -15,9 +15,9 @@ import { LessonsService } from "./lessons.service";
     template: `
     <h1>{{getTitle()}}</h1>
 
-    <input type="text" (input)="onTextInput($event)"> <br>
+    <input type="text" [(ngModel)]="userName"> <br>
     <label>{{userName}} </label> <br>
-    <button (click)="onTestButtonClicked()"> Test </button>
+    <button (click)="onTestButtonClicked()"> Reset </button>
     <ul>
         <li *ngFor="let lesson of lessonsArray">
             {{lesson}}
@@ -43,10 +43,13 @@ export class LessonsComponent {
 
     onTestButtonClicked() {
         console.log("Tugma bosilib tashayabdiii :) ")
+        this.userName = "";
     }
 
     onTextInput(event: any) {
         this.userName = event.target.value;
+        console.log(this.userName)
+
         console.log(event)
     }
 }
