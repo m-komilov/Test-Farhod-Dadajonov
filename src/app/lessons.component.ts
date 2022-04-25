@@ -13,6 +13,16 @@ import { LessonsService } from "./lessons.service";
     // back tick yani bek tik ( => ` <= ) bunday belgi nima uchun qo'yiladi desak
     // bunday holda biz bir nechta qator satrlarni yozishimiz mumkin huddi pythondagi ( => """  """ <= )shunga o'xshedi ekan :)
     template: `
+
+    <table>
+        <tr> 
+            <!-- attribute binding bundan foydalanish uchun ishlatmoqchi bo'lgan attributimini oldiga attr ni o'shib qo'yishimniz kerak -->
+            <td [attr.colspan]="colSpan" >
+
+            </td>
+        </tr>
+    </table>
+
     <h1>{{getTitle()}}</h1>
 
     <input type="text" [(ngModel)]="userName"> <br>
@@ -28,8 +38,8 @@ import { LessonsService } from "./lessons.service";
             {{lesson}}
         </li>
     </ul>
-    <img src="{{ logoUrl }}"/> <!-- string interpolation --> <!-- string interpolation ni tagidayam property binding yotibdi ekan brat addushishi Farhodaka -->
-    <img [src]="logoUrl">   <!-- property binding  bu bir tomonlama binding deyiladi ekan  -->
+    <img width="200" src="{{ logoUrl }}"/> <!-- string interpolation --> <!-- string interpolation ni tagidayam property binding yotibdi ekan brat addushishi Farhodaka -->
+    <img width="200" [src]="logoUrl">   <!-- property binding  bu bir tomonlama binding deyiladi ekan  -->
     `
 })
 export class LessonsComponent {
@@ -37,6 +47,7 @@ export class LessonsComponent {
     isBtnPrimaryApplicable: boolean = true;
 
     isActive: boolean = false;
+    colSpan : number = 5
 
     title: string = "Darslar ro'yhati";
     lessonsArray: string[];
