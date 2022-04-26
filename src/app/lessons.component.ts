@@ -55,15 +55,19 @@ import { LessonsService } from "./lessons.service";
 
     <img width="200" [src]="logoUrl">   <!-- property binding  bu bir tomonlama binding deyiladi ekan  -->
 
-
     <div [ngSwitch]="colSpan">
         <p *ngSwitchCase="1" >Colspan 1</p>
         <button *ngSwitchCase="2" >Colspan 2</button>
         <input *ngSwitchCase="3" type="text" value="Colspan 3">
         <h1 *ngSwitchDefault="">Colsapan default</h1>
-
     </div>
 
+    <button [ngStyle]="{'backgroundColor': isActive ? 'green' : 'white',
+                        'color': isActive ? 'red' : 'black' }" >
+    Salomlar
+    </button>
+
+    <button [ngClass]="{'btn': !isActive, 'btn-info': !isActive}">  Test 1</button>
     `
 })
 export class LessonsComponent {
