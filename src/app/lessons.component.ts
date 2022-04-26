@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Lesson } from "./lesson";
 import { LessonsService } from "./lessons.service";
 
 //decorator
@@ -18,27 +19,19 @@ import { LessonsService } from "./lessons.service";
 
     <ul>
         <!-- index as i  qibturib misol uchun manashu for ni indexlarini ovolo'ramizakan  -->
-        <li *ngFor="let lesson of lessonsArray; index as i">
-            {{ i + 1 + " " + lesson}}
+        <li *ngFor="let lesson of lessonsArray" (click)="onSelect(lesson)" >
+            {{lesson.title}}
         </li>
     </ul>
 
-    <app-lesson></app-lesson>
-
+    <app-lesson [lesson]="selectedLesson" (changeTitle)="onTitleChange($event)"></app-lesson>
     `
 })
 export class LessonsComponent {
-    isBtnApplicable: boolean = true;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-    isBtnPrimaryApplicable: boolean = true;
-
-    isActive: boolean = false;
-    colSpan : number = 1
 
     title: string = "Darslar ro'yhati";
-    lessonsArray: string[];
-    logoUrl: string = "https://blog.ndepend.com/wp-content/uploads/global-coding-standards-2-960x460.jpg";
-    userName: string = "";
-    showImage: boolean = false;
+    lessonsArray: Lesson[];
+    selectedLesson: Lesson;
 
     getTitle(): string {
         return  "Sarlavha: " + this.title;
@@ -48,15 +41,13 @@ export class LessonsComponent {
         this.lessonsArray = lessonsSvs.getLessons()
     }
 
-    onTestButtonClicked() {
-        console.log("Tugma bosilib tashayabdiii :) ")
-        this.userName = "";
+    onSelect(lesson: Lesson): void {
+        this.selectedLesson = lesson;
     }
 
-    onTextInput(event: any) {
-        this.userName = event.target.value;
-        console.log(this.userName)
-
-        console.log(event)
+    onTitleChange(isPlus: boolean) {
+        isPlus ? this.selectedLesson.title += "+" : this.selectedLesson.title += "-"
     }
+
+    
 }
