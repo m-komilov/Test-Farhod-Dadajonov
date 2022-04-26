@@ -12,4 +12,9 @@ export class LessonComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  title = "Angular Asoslari"
+  price = 50.0
+  duration = 20
+  intakeDeadline = new Date(2022, 4, 25)
+
 }

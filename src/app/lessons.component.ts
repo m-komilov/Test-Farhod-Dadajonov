@@ -34,12 +34,36 @@ import { LessonsService } from "./lessons.service";
     <!-- [style.backgroundColor]="isActive ? 'green' : 'white'"  <=== Style binding -->
     <button [style.backgroundColor]="isActive ? 'green' : 'white'" (click)="onTestButtonClicked()"> Test stryle binding</button>
     <ul>
-        <li *ngFor="let lesson of lessonsArray">
-            {{lesson}}
+        <!-- index as i  qibturib misol uchun manashu for ni indexlarini ovolo'ramizakan  -->
+        <li *ngFor="let lesson of lessonsArray; index as i">
+            {{ i + 1 + " " + lesson}}
         </li>
     </ul>
-    <img width="200" src="{{ logoUrl }}"/> <!-- string interpolation --> <!-- string interpolation ni tagidayam property binding yotibdi ekan brat addushishi Farhodaka -->
+
+    <app-lesson></app-lesson>
+
+    <!-- mashetda shartlar berib tashasa bo'ladikan yomonakan omalee -->
+    <!-- rasmdi ichida shart berib qanoatlantirmasa boshqa componentga yo'naltirvoryabmiz yonmiiii -->
+
+    <img *ngIf="colSpan < 0; else noLogo" width="200" src="{{ logoUrl }}"/>         <!-- string interpolation --> <!-- string interpolation ni tagidayam property binding yotibdi ekan brat addushishi Farhodaka -->
+
+    <ng-template #noLogo >
+        <h1>
+            Nimo'lyaptiii
+        </h1>
+    </ng-template>
+
     <img width="200" [src]="logoUrl">   <!-- property binding  bu bir tomonlama binding deyiladi ekan  -->
+
+
+    <div [ngSwitch]="colSpan">
+        <p *ngSwitchCase="1" >Colspan 1</p>
+        <button *ngSwitchCase="2" >Colspan 2</button>
+        <input *ngSwitchCase="3" type="text" value="Colspan 3">
+        <h1 *ngSwitchDefault="">Colsapan default</h1>
+
+    </div>
+
     `
 })
 export class LessonsComponent {
@@ -47,12 +71,13 @@ export class LessonsComponent {
     isBtnPrimaryApplicable: boolean = true;
 
     isActive: boolean = false;
-    colSpan : number = 5
+    colSpan : number = 1
 
     title: string = "Darslar ro'yhati";
     lessonsArray: string[];
     logoUrl: string = "https://blog.ndepend.com/wp-content/uploads/global-coding-standards-2-960x460.jpg";
     userName: string = "";
+    showImage: boolean = false;
 
     getTitle(): string {
         return  "Sarlavha: " + this.title;
