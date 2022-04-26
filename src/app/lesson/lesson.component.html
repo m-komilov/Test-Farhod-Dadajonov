@@ -1,9 +1,11 @@
-
-<div *ngIf="lesson" >
-    <h4>Nomi: {{lesson.title | uppercase}}</h4>  <!-- pipelar  uppercase shuyerda pipe hisoblanyabdi  -->
-    <h4>Narxi: {{lesson.price | currency: 'EUR'}}</h4>
-    <h4>Davomiyigi : {{lesson.duration | number}}</h4>
-    <h4>Yopilish sanasi : {{lesson.intakeDeadline | date}}</h4> 
-    <button class="btn btn-info" (click)="onPlusBtn()">+</button>
-    <button class="btn btn-info" (click)="onMinusBtn()">-</button>
+<!--  *ngIf="lesson" divni ichida mashi turgandi -->
+<div>
+    <!-- mashetta tepada ngIf yozmasdan turib ham exeption ni oldini osa bo'ladikan -->
+    <!-- shunchaki ? shu belgi null bo'pqolishi mumkin degan belgini qo'yib ketamiz -->
+    <h4>Nomi: {{lesson?.title | uppercase}}</h4>  <!-- pipelar  uppercase shuyerda pipe hisoblanyabdi  -->
+    <h4>Narxi: {{lesson?.price | currency: 'EUR'}}</h4>
+    <h4>Davomiyigi : {{lesson?.duration | number}}</h4>
+    <h4>Yopilish sanasi : {{lesson?.intakeDeadline | date}}</h4> 
+    <button class="btn btn-info" (click)="onPlusBtn()">Plas</button>
+    <button class="btn btn-info" (click)="onMinusBtn()">Minus</button>
 </div>
