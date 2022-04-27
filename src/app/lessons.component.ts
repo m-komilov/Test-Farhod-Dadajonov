@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Lesson } from "./lesson";
 import { LessonsService } from "./lessons.service";
 
@@ -20,15 +21,17 @@ import { LessonsService } from "./lessons.service";
     <ul>
         <!-- index as i  qibturib misol uchun manashu for ni indexlarini ovolo'ramizakan  -->
         <li *ngFor="let lesson of lessonsArray" (click)="onSelect(lesson)" >
-            {{lesson.title}}
+        <a [routerLink]="['/darslar', 'lesson.title']"> {{lesson.title}} </a>
         </li>
     </ul>
-
+    
     <app-lesson [lesson]="selectedLesson" (changeTitle)="onTitleChange($event)"></app-lesson>
     `
+    
 })
-export class LessonsComponent {
+export class LessonsComponent implements OnInit {
 
+    titleParam: string | null = '';
     title: string = "Darslar ro'yhati";
     lessonsArray: Lesson[];
     selectedLesson: Lesson;
@@ -37,7 +40,7 @@ export class LessonsComponent {
         return  "Sarlavha: " + this.title;
     }
 
-    constructor(lessonsSvs: LessonsService) {
+    constructor(private route: ActivatedRoute ,lessonsSvs: LessonsService) {
         this.lessonsArray = lessonsSvs.getLessons()
     }
 
@@ -49,5 +52,16 @@ export class LessonsComponent {
         isPlus ? this.selectedLesson.title += "+" : this.selectedLesson.title += "-"
     }
 
-    
+    ngOnInit(): void {
+        this.route.paramMap.subscribe( params => {
+            this.titleParam = params.get('title');
+            this.getLessonByTitle();
+        })
+    }
+    getLessonByTitle() : void {
+        if (!!this.titleParam){
+        var lesson = this.lessonsArray.find(les => les.title == this.titleParam)!;
+            this.onSelect(lesson);
+        }
+    }
 }
