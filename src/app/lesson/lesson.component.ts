@@ -9,7 +9,7 @@ import { Lesson } from '../lesson';
 })                                                                
 export class LessonComponent implements OnInit {                                                                
                             
-  @Input() lesson: Lesson;            
+  @Input() lesson?: Lesson;            
 //  changeTitle ni nomini o'zgartirasaham bo'ladikna alias 
 //  @Output("o'zgartirmoqchi bo'lgan nomimiz")
   @Output() changeTitle = new EventEmitter<boolean>();                                                                
