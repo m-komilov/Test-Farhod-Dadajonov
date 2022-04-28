@@ -1,5 +1,5 @@
 <!--  *ngIf="lesson" divni ichida mashi turgandi -->
-<div>
+<div *ngIf="lesson">
     <!-- mashetta tepada ngIf yozmasdan turib ham exeption ni oldini osa bo'ladikan -->
     <!-- shunchaki ? shu belgi null bo'pqolishi mumkin degan belgini qo'yib ketamiz -->
     <h4>Nomi: {{lesson?.title | uppercase}}</h4>  <!-- pipelar  uppercase shuyerda pipe hisoblanyabdi  -->

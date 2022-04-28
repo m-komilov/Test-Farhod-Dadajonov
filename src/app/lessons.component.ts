@@ -2,6 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Lesson } from "./lesson";
 import { LessonsService } from "./lessons.service";
+// import { Observable } from "rxjs"
+import { map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import { merge, fromEvent, interval } from 'rxjs';
+
 
 //decorator
 @Component({
@@ -21,7 +26,7 @@ import { LessonsService } from "./lessons.service";
     <ul>
         <!-- index as i  qibturib misol uchun manashu for ni indexlarini ovolo'ramizakan  -->
         <li *ngFor="let lesson of lessonsArray" (click)="onSelect(lesson)" >
-        <a [routerLink]="['/darslar', 'lesson.title']"> {{lesson.title}} </a>
+        <a [routerLink]="['/darslar', lesson.id ,lesson.title]"> {{lesson.title}} </a>
         </li>
     </ul>
     
@@ -53,11 +58,16 @@ export class LessonsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe( params => {
-            this.titleParam = params.get('title');
+        let params$ = merge(this.route.paramMap, this.route.queryParamMap);
+        params$.subscribe(combinedParams => {
+            this.titleParam = combinedParams.get('title');
             this.getLessonByTitle();
+
+            let page= combinedParams.get('page');
+            console.log(page);
         })
     }
+    
     getLessonByTitle() : void {
         if (!!this.titleParam){
         var lesson = this.lessonsArray.find(les => les.title == this.titleParam)!;

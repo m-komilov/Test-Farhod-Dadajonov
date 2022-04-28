@@ -14,8 +14,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'darslar/:id/:title', component: LessonsComponent},
   {path: 'darslar', component: LessonsComponent},
   {path: 'navbar', component: NavbarComponent},
+  // ** agarada bizda yo'q reoute berilsa page not found componentiga jo'natvoradi
   {path: '**', component: PageNoteFoundComponent}
 ]
 
