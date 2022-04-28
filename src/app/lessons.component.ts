@@ -1,11 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Lesson } from "./lesson";
 import { LessonsService } from "./lessons.service";
-// import { Observable } from "rxjs"
-import { map } from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import { merge, fromEvent, interval } from 'rxjs';
+import { merge} from 'rxjs';
 
 
 //decorator
@@ -22,7 +19,7 @@ import { merge, fromEvent, interval } from 'rxjs';
     template: `
 
     <h1>{{getTitle()}}</h1>
-
+    <button (click)="onNavigateButtonClick()">Navigate</button>
     <ul>
         <!-- index as i  qibturib misol uchun manashu for ni indexlarini ovolo'ramizakan  -->
         <li *ngFor="let lesson of lessonsArray" (click)="onSelect(lesson)" >
@@ -45,8 +42,20 @@ export class LessonsComponent implements OnInit {
         return  "Sarlavha: " + this.title;
     }
 
-    constructor(private route: ActivatedRoute ,lessonsSvs: LessonsService) {
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute ,
+        lessonsSvs: LessonsService) 
+    {
         this.lessonsArray = lessonsSvs.getLessons()
+    }
+
+    onNavigateButtonClick() {
+        this.router.navigate(['/darslar', 1, 'Angular asoslari'], {
+            queryParams: {page: 1, order: 'desc'}
+        });
+
+        console.log();
     }
 
     onSelect(lesson: Lesson): void {
@@ -67,7 +76,7 @@ export class LessonsComponent implements OnInit {
             console.log(page);
         })
     }
-    
+
     getLessonByTitle() : void {
         if (!!this.titleParam){
         var lesson = this.lessonsArray.find(les => les.title == this.titleParam)!;
