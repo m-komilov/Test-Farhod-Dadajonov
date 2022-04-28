@@ -4,5 +4,4 @@ export class Lesson {
   price?: number;
   duration?: number;
   intakeDeadline? : Date;
-
 }

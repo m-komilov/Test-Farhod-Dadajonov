@@ -16,6 +16,9 @@
             <!-- query bervoryabmiz -->
             <a class="nav-link" [routerLink]="['/darslar', 2 , 'Web API']" [queryParams]="{page: 1, order: 'desc'}" >Web API</a>
           </li>
+          <li  routerLinkActive="active current" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" routerLink="/boglanish" >Bo'lanish</a>
+          </li>
         </ul>
 
       </div>

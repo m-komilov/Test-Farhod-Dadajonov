@@ -11,11 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { PageNoteFoundComponent } from './page-note-found/page-note-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'darslar/:id/:title', component: LessonsComponent},
   {path: 'darslar', component: LessonsComponent},
+  {path: 'boglanish', component: ContactFormComponent},
   {path: 'navbar', component: NavbarComponent},
   // ** agarada bizda yo'q reoute berilsa page not found componentiga jo'natvoradi
   {path: '**', component: PageNoteFoundComponent}
@@ -29,6 +31,7 @@ const routes: Routes = [
     HomeComponent,
     PageNoteFoundComponent,
     NavbarComponent,
+    ContactFormComponent,
   ],
   imports: [
     BrowserModule,
