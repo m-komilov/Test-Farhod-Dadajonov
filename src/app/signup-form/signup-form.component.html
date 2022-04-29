@@ -1,0 +1,25 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <label for="login">
+                Login
+            </label>
+            <input 
+            formControlName="login"
+            type="text" 
+            id="login"
+            class="form-control">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password">Kalit so'z</label>
+            <input 
+            formControlName="password"
+            type="text" 
+            id="password"
+            class="form-control">
+        </div>
+        <br>
+        <button class="btn btn-info" type="submit">Ro'yxatdan o'tish</button>
+    </form>
+</div>

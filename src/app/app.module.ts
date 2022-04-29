@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { LessonsComponent } from './lessons.component';
 import { LessonComponent } from './lesson/lesson.component';
 import { LessonsService } from './lessons.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { PageNoteFoundComponent } from './page-note-found/page-note-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -32,10 +33,12 @@ const routes: Routes = [
     PageNoteFoundComponent,
     NavbarComponent,
     ContactFormComponent,
+    SignupFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   //mashetdan ro'yxatdan o'tkazib qo'yishimiz kerak ekan dependency injection qilib ishlatgan service larimizi huddi Scoped, Singleton, Trancient ga o'xshab aheyy
