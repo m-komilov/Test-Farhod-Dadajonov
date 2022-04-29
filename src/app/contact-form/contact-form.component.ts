@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactFormComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+
+  onNameChange(ngModelObj: any) {
+    console.log(ngModelObj.value)
   }
 
 }
