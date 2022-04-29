@@ -1,23 +1,40 @@
-<div class="container">
-    <form [formGroup]="form">
+<div class="container col-4 mt-5">
+
+    <div *ngIf="form.errors" class="alert alert-danger">
+        <p>Login yoki parol noto'g'ri</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="signIn()" >
         <div class="form-group">
             <label for="login">
                 Login
             </label>
-            <input 
-            formControlName="login"
-            type="text" 
-            id="login"
-            class="form-control">
+            <input formControlName="login" type="text" id="login" class="form-control">
+
+            <div *ngIf="login?.pending"> <p>Noyoblikga tekshiryabman...</p> </div>
+
+            <div *ngIf="login?.touched && login?.invalid" class="alert alert-danger">
+                <div *ngIf="login?.errors?.['required']">
+                    <p>Loginni kiritish majburiy</p>
+                </div>
+                
+                <div *ngIf="login?.errors?.['minlength']">
+                    <p>Login kamida {{ login?.errors?.['minlength'].requiredLength }} bo'lishi kerak</p>
+                </div>
+                
+                <div *ngIf="login?.errors?.['noSpace']">
+                    <p>Loginda space bo'lmasligi kerak</p>
+                </div>
+                
+                <div *ngIf="login?.errors?.['isTaken']">
+                    <p>Bu login band</p>
+                </div>
+            </div>
         </div>
         <br>
         <div class="form-group">
             <label for="password">Kalit so'z</label>
-            <input 
-            formControlName="password"
-            type="text" 
-            id="password"
-            class="form-control">
+            <input formControlName="password" type="text" id="password" class="form-control">
         </div>
         <br>
         <button class="btn btn-info" type="submit">Ro'yxatdan o'tish</button>

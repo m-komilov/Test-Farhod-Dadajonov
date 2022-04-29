@@ -13,6 +13,7 @@ import { PageNoteFoundComponent } from './page-note-found/page-note-found.compon
 import { NavbarComponent } from './navbar/navbar.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { AuthService } from './auth.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -43,7 +44,7 @@ const routes: Routes = [
   ],
   //mashetdan ro'yxatdan o'tkazib qo'yishimiz kerak ekan dependency injection qilib ishlatgan service larimizi huddi Scoped, Singleton, Trancient ga o'xshab aheyy
   // Demak bu Singleton pattern holatida ishlar ekan
-  providers: [LessonsService],
+  providers: [LessonsService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
