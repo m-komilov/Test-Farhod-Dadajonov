@@ -35,17 +35,20 @@
             </label>
         </div>
 
-        <div class="radio">
-            <label for="">
-                <input ngModel type="radio" name="contactMetgod" value="1" > E-mail
+        <!-- radio larni hard code dan qutqarish bizga buyerda contactMethods degan class kerak bo'ladi ekan 
+            adashmasam uni valuesi va type bo'lishi shart -->
+        <div *ngFor="let cmethod of contactMethods" class="radio">
+            <label>
+                <input ngModel type="radio" name="contactMetgod" [value]="cmethod.type" > 
+                {{ cmethod.name }}
             </label>
         </div>
-
+<!-- 
         <div class="radio">
             <label for="">
                 <input ngModel type="radio" name="contactMetgod" value="2" > SMS
             </label>
-        </div>
+        </div> -->
 
         <button class="btn btn-primary">
             Submit
