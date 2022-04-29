@@ -1,33 +1,49 @@
 <div class="container">
-    <form>
+    <form #frm="ngForm">
         
         <div class="form-group">
             <label for="firstName">Ism : </label>
-            <input ngModel  required minlength="2" maxlength="10" name="firstName" #firstName="ngModel" id="firstName" (change)="onNameChange(firstName)" type="text" class="form-control">
+            <input 
+            ngModel  
+            required 
+            minlength="2" 
+            maxlength="10" 
+            name="firstName" 
+            #firstName="ngModel" 
+            id="firstName" 
+            (change)="onNameChange(firstName)" 
+            type="text" 
+            class="form-control">
           
-            <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            <div 
+            class="alert alert-danger" 
+            *ngIf="firstName.touched && !firstName.valid">
                 <div *ngIf="firstName.errors?.['required']" >
                     <p>Ismni kiritish majburiy</p>
                 </div>
                 <div *ngIf="firstName.errors?.['minlength']" >
-                    <p>Ismni kamida 2 ta belgi kiritish majburiy</p>
+                    <p>Ismni kamida {{firstName.errors?.['minlength'].requiredLength}} ta belgi kiritish majburiy</p>
                 </div>
                 <div *ngIf="firstName.errors?.['maxlength']" >
-                    <p>Ismni ko'pida 10 ta belgi kiritish majburiy</p>
+                    <p>Ismni ko'pida {{firstName.errors?.['maxlength'].requiredLength}} ta belgi kiritish majburiy</p>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <label for="email">Email manzil : </label>
-            <input name="email" id="email" type="email" class="form-control">
+            <input ngModel name="email" id="email" type="email" class="form-control">
         </div>
     
         <div class="form-group">
             <label for="message">Xabar : </label>
-            <textarea name="message" id="message" class="form-control"></textarea>
+            <textarea ngModel name="message" id="message" class="form-control"></textarea>
         </div>
     
+        <p>
+            {{frm.value | json}}
+        </p>
+
         <button class="btn btn-primary" >
             Submit
         </button>

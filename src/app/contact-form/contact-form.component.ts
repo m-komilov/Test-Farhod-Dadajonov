@@ -15,7 +15,7 @@ export class ContactFormComponent implements OnInit {
   }
 
   onNameChange(ngModelObj: any) {
-    console.log(ngModelObj.value)
+    console.log(ngModelObj)
   }
 
 }
