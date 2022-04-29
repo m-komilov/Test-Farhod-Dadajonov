@@ -1,5 +1,5 @@
 <div class="container">
-    <form #frm="ngForm">
+    <form #frm="ngForm" (ngSubmit)="onSubmit()">
 
         <div class="form-group">
             <label for="firstName">Ism : </label>
@@ -18,32 +18,46 @@
                 </div>
             </div>
         </div>
-
+        <br>
         <div class="form-group">
             <label for="email">Email manzil : </label>
             <input ngModel name="email" id="email" type="email" class="form-control">
         </div>
-
+        <br>
         <div class="form-group">
             <label for="message">Xabar : </label>
             <textarea ngModel name="message" id="message" class="form-control"></textarea>
         </div>
-
+        <br>
         <div class="checkbox">
             <label for="">
                 <input ngModel type="checkbox" name="isSubscribed" id=""> Yangiliklarga a'zo bo'ling
             </label>
         </div>
-
-        <!-- radio larni hard code dan qutqarish bizga buyerda contactMethods degan class kerak bo'ladi ekan 
+        <br>
+        <!-- radio larni hard code dan qutqarish bizga buyerda contactMethods degan massiv {shu massiv contactMethods ts file ga qo'shiladi} kerak bo'ladi ekan 
             adashmasam uni valuesi va type bo'lishi shart -->
+        <!-- uje ishlayabdi -->
+        <!-- contactMethods = [{type: 1, name: 'E-mail'}, {type: 2, name: 'SMS'}] mana o'sha massiv -->
         <div *ngFor="let cmethod of contactMethods" class="radio">
             <label>
-                <input ngModel type="radio" name="contactMetgod" [value]="cmethod.type" > 
+                <input ngModel type="radio" name="contactMetgod" [value]="cmethod.type">
                 {{ cmethod.name }}
             </label>
         </div>
-<!-- 
+        <br>
+        <div class="form-group ">
+            <label>Bo'lanishning dropduwn usuli </label>
+
+            <!-- selectni ichidagi multiple bir nechta selectlarni qilishimizni imkonini beradi ekan :) -->
+            <select multiple ngModel name="contactMethodDropdown" class="form-control">
+                <option *ngFor="let cmethod of contactMethods" [value]="cmethod.type">
+                    {{cmethod.name}}
+                </option>
+            </select>
+        </div>
+        <br>
+        <!--  bu hard ko'd 
         <div class="radio">
             <label for="">
                 <input ngModel type="radio" name="contactMetgod" value="2" > SMS
@@ -53,7 +67,7 @@
         <button class="btn btn-primary">
             Submit
         </button>
-
+        <br>
         <p>
             {{frm.value | json}}
         </p>

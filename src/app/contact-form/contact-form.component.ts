@@ -14,8 +14,14 @@ export class ContactFormComponent implements OnInit {
     
   }
 
+  contactMethods = [{type: 1, name: 'E-mail'}, {type: 2, name: 'SMS'}]
+
   onNameChange(ngModelObj: any) {
     console.log(ngModelObj)
+  }
+
+  onSubmit(){
+    console.log("Submit uje hesop")
   }
 
 }
